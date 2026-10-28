@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shivam — Frontend Web Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #0a0e1a;
+      --bg-card: #0f1525;
+      --bg-elevated: #141c30;
+      --fg: #f0f2f5;
+      --fg-muted: #8892a8;
+      --fg-dim: #4a5568;
+      --accent: #00e0d0;
+      --accent-glow: rgba(0, 224, 208, 0.15);
+      --accent-hover: #33ffe8;
+      --whatsapp: #25d366;
+      --border: rgba(255,255,255,0.06);
+      --border-hover: rgba(0, 224, 208, 0.3);
+      --sans: 'Inter', system-ui, -apple-system, sans-serif;
+      --serif: 'DM Serif Display', Georgia, serif;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --radius-pill: 100px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection { background: var(--accent); color: var(--bg); }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Navbar ── */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 0 3rem;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10,14,26,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.02em; }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex; gap: 2rem;
+      font-size: 0.9rem; font-weight: 500; color: var(--fg-muted);
+    }
+    .nav-links a { transition: color 0.25s; }
+    .nav-links a:hover { color: var(--fg); }
+
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+
+    .btn-hire {
+      padding: 0.6rem 1.5rem;
+      background: var(--accent);
+      color: var(--bg);
+      border-radius: var(--radius-pill);
+      font-size: 0.85rem; font-weight: 700;
+      display: flex; align-items: center; gap: 0.5rem;
+      transition: all 0.25s;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+    .btn-hire:hover { background: var(--accent-hover); box-shadow: 0 0 30px rgba(0,224,208,0.25); }
+    .btn-hire svg { width: 16px; height: 16px; }
+
+    /* ── Hero ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 7rem 3rem 3rem;
+      gap: 3rem;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .hero-content { max-width: 560px; }
+
+    .availability-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.75rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      color: var(--accent); margin-bottom: 1.5rem;
+    }
+
+    .availability-badge .dot {
+      width: 8px; height: 8px;
+      background: var(--accent); border-radius: 50%;
+      animation: pulse-dot 2s infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,224,208,0.4); }
+      50% { opacity: 0.8; box-shadow: 0 0 0 6px rgba(0,224,208,0); }
+    }
+
+    .hero-title {
+      font-size: clamp(3rem, 5.5vw, 4.5rem);
+      font-weight: 800; line-height: 1.1;
+      letter-spacing: -0.03em; margin-bottom: 1.5rem;
+    }
+
+    .hero-title .name-accent {
+      color: var(--accent);
+      font-family: var(--serif);
+      font-weight: 400; font-style: italic;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem; color: var(--fg-muted);
+      line-height: 1.75; max-width: 440px; margin-bottom: 2rem;
+    }
+    .hero-desc strong { color: var(--fg); font-weight: 600; }
+
+    .hero-buttons { display: flex; gap: 1rem; margin-bottom: 3.5rem; }
+
+    .btn {
+      padding: 0.75rem 1.8rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.9rem; font-weight: 600;
+      cursor: pointer; display: inline-flex;
+      align-items: center; gap: 0.5rem;
+      transition: all 0.25s; border: none;
+      font-family: var(--sans);
+    }
+
+    .btn-primary {
+      background: var(--accent); color: var(--bg); font-weight: 700;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+    .btn-primary:hover { background: var(--accent-hover); box-shadow: 0 0 30px rgba(0,224,208,0.25); }
+    .btn-primary svg { width: 14px; height: 14px; transition: transform 0.2s; }
+    .btn-primary:hover svg { transform: translateY(2px); }
+
+    .btn-secondary {
+      background: var(--bg-elevated); color: var(--fg);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-stats { display: flex; gap: 2.5rem; }
+
+    .stat-item .stat-number {
+      font-size: 2rem; font-weight: 800;
+      letter-spacing: -0.02em; line-height: 1.2;
+    }
+    .stat-item .stat-label { font-size: 0.78rem; color: var(--fg-muted); }
+
+    /* ── Hero Image ── */
+    .hero-image-wrapper {
+      display: flex; justify-content: flex-end; position: relative;
+    }
+
+    .hero-image-container {
+      width: 380px; height: 460px;
+      border-radius: var(--radius);
+      overflow: hidden; position: relative;
+      border: 1px solid var(--border);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .hero-image-container img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+    }
+
+    /* Badge inside the image at top */
+    .open-badge {
+      position: absolute;
+      top: 1rem; left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: var(--bg);
+      font-size: 0.78rem; font-weight: 700;
+      padding: 0.5rem 1.4rem;
+      border-radius: var(--radius-pill);
+      white-space: nowrap;
+      box-shadow: 0 4px 20px rgba(0,224,208,0.3);
+      z-index: 2;
+    }
+
+    /* ── Section shared ── */
+    section { padding: 6rem 3rem; max-width: 1280px; margin: 0 auto; }
+
+    .section-header {
+      display: flex; align-items: center;
+      justify-content: space-between; margin-bottom: 3.5rem;
+    }
+
+    .section-tag {
+      font-size: 0.72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.2em;
+      color: var(--accent);
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800; letter-spacing: -0.03em; margin-top: 0.6rem;
+    }
+    .section-title .dim { color: var(--fg-dim); }
+
+    .section-line { flex: 1; height: 1px; background: var(--border); margin-left: 2rem; }
+
+    /* ── About ── */
+    .about-section { border-top: 1px solid var(--border); }
+
+    .about-grid {
+      display: grid; grid-template-columns: 340px 1fr;
+      gap: 4rem; align-items: start;
+    }
+
+    .about-photo {
+      width: 100%; aspect-ratio: 3 / 4;
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--border); position: relative;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+
+    .about-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+    }
+
+    .about-photo .location-tag {
+      position: absolute; bottom: 1rem; left: 1rem;
+      font-size: 0.7rem; font-weight: 600;
+      padding: 0.35rem 0.9rem;
+      background: rgba(10,14,26,0.8);
+      backdrop-filter: blur(10px);
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .about-content h2 {
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      font-weight: 800; letter-spacing: -0.02em;
+      line-height: 1.25; margin-bottom: 1.5rem;
+    }
+    .about-content h2 em { color: var(--accent); font-style: normal; }
+
+    .about-content p {
+      font-size: 1rem; color: var(--fg-muted);
+      line-height: 1.8; margin-bottom: 1.2rem; max-width: 52ch;
+    }
+
+    .info-chips { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: 1.5rem 0 2rem; }
+
+    .info-chips .chip {
+      display: flex; align-items: center; gap: 0.4rem;
+      font-size: 0.8rem; font-weight: 500;
+      padding: 0.45rem 1rem; border-radius: var(--radius-pill);
+      background: var(--bg-card); border: 1px solid var(--border);
+      color: var(--fg-muted);
+    }
+    .info-chips .chip .chip-icon { font-size: 0.9rem; }
+
+    /* ── Skills ── */
+    .skills-section { border-top: 1px solid var(--border); }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex; align-items: center; gap: 1rem;
+      transition: all 0.3s; cursor: default;
+    }
+
+    .skill-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,224,208,0.06);
+    }
+
+    .skill-icon {
+      width: 44px; height: 44px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; flex-shrink: 0;
+    }
+
+    .skill-card .skill-name { font-size: 0.95rem; font-weight: 600; }
+    .skill-card .skill-level { font-size: 0.72rem; color: var(--fg-muted); margin-top: 0.15rem; }
+
+    .skill-bar-track {
+      width: 100%; height: 3px;
+      background: var(--border); border-radius: 4px;
+      margin-top: 0.5rem; overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      height: 100%; background: var(--accent);
+      border-radius: 4px; transition: width 1s ease; width: 0;
+    }
+
+    /* ── Services ── */
+    .services-section { border-top: 1px solid var(--border); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .service-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem; transition: all 0.3s;
+      cursor: default; position: relative; overflow: hidden;
+    }
+
+    .service-card::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0; transition: opacity 0.3s;
+    }
+
+    .service-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+    }
+    .service-card:hover::before { opacity: 1; }
+
+    .service-icon-box {
+      width: 48px; height: 48px;
+      border-radius: var(--radius-sm);
+      background: var(--accent-glow);
+      border: 1px solid var(--border-hover);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; margin-bottom: 1.5rem;
+    }
+
+    .service-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.8rem; }
+    .service-card p { font-size: 0.9rem; color: var(--fg-muted); line-height: 1.7; }
+
+    /* ── Projects ── */
+    .projects-section { border-top: 1px solid var(--border); }
+
+    .project-showcase {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: grid; grid-template-columns: 1.2fr 1fr;
+      transition: all 0.3s;
+    }
+
+    .project-showcase:hover {
+      border-color: var(--border-hover);
+      box-shadow: 0 16px 50px rgba(0,0,0,0.35);
+    }
+
+    .project-preview {
+      background: var(--bg-elevated);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; min-height: 350px; overflow: hidden;
+    }
+
+    .project-preview .browser-mockup {
+      width: 85%; background: var(--bg);
+      border-radius: 8px; overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+      border: 1px solid var(--border);
+    }
+
+    .browser-bar {
+      display: flex; align-items: center; gap: 6px;
+      padding: 10px 14px; background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .browser-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .browser-dot.red { background: #ff5f57; }
+    .browser-dot.yellow { background: #febc2e; }
+    .browser-dot.green { background: #28c840; }
+
+    .browser-url {
+      margin-left: 10px; font-size: 0.65rem;
+      color: var(--fg-dim); font-family: var(--sans);
+      background: var(--bg-elevated);
+      padding: 3px 10px; border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+
+    .browser-body {
+      padding: 1.5rem; min-height: 180px;
+      display: flex; flex-direction: column; gap: 0.8rem;
+    }
+
+    .mock-nav { display: flex; justify-content: space-between; align-items: center; }
+    .mock-logo { font-size: 0.85rem; font-weight: 800; color: var(--accent); }
+    .mock-links { display: flex; gap: 0.8rem; }
+    .mock-links span { width: 35px; height: 5px; border-radius: 3px; background: var(--border); }
+
+    .mock-hero-block { display: flex; gap: 1rem; margin-top: 0.5rem; }
+    .mock-text-col { flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
+    .mock-line { height: 6px; border-radius: 3px; background: rgba(255,255,255,0.06); }
+    .mock-line.w80 { width: 80%; }
+    .mock-line.w60 { width: 60%; }
+    .mock-line.thick { height: 12px; background: rgba(255,255,255,0.08); width: 70%; }
+    .mock-line.accent { height: 8px; background: var(--accent-glow); width: 40%; border: 1px solid var(--border-hover); border-radius: 4px; }
+
+    .mock-img {
+      width: 60px; height: 70px; border-radius: 6px;
+      background: var(--bg-elevated); border: 1px solid var(--border); flex-shrink: 0;
+    }
+
+    .mock-cards { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+    .mock-card { flex: 1; height: 40px; border-radius: 6px; background: var(--bg-elevated); border: 1px solid var(--border); }
+
+    .project-details {
+      padding: 2.5rem; display: flex;
+      flex-direction: column; justify-content: center;
+    }
+
+    .project-type-tag {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.68rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.15em;
+      color: var(--accent); margin-bottom: 1rem;
+      padding: 0.3rem 0.9rem; background: var(--accent-glow);
+      border: 1px solid var(--border-hover);
+      border-radius: var(--radius-pill); width: fit-content;
+    }
+
+    .project-details h3 { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.8rem; }
+    .project-details p { font-size: 0.95rem; color: var(--fg-muted); line-height: 1.75; margin-bottom: 1.5rem; }
+
+    .project-tech-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+    .project-tech-stack span {
+      font-size: 0.72rem; font-weight: 600;
+      padding: 0.3rem 0.8rem; border-radius: var(--radius-pill);
+      background: var(--bg-elevated); border: 1px solid var(--border);
+      color: var(--fg-muted);
+    }
+
+    .project-buttons { display: flex; gap: 0.8rem; }
+    .project-buttons a {
+      font-size: 0.82rem; font-weight: 600;
+      padding: 0.6rem 1.4rem; border-radius: var(--radius-pill);
+      transition: all 0.25s; display: inline-flex;
+      align-items: center; gap: 0.4rem;
+    }
+
+    .project-buttons .btn-live { background: var(--accent); color: var(--bg); }
+    .project-buttons .btn-live:hover { background: var(--accent-hover); }
+    .project-buttons .btn-code { background: var(--bg-elevated); color: var(--fg); border: 1px solid var(--border); }
+    .project-buttons .btn-code:hover { border-color: var(--accent); color: var(--accent); }
+
+    .more-projects-note {
+      text-align: center; margin-top: 3rem;
+      font-size: 0.9rem; color: var(--fg-dim); font-style: italic;
+    }
+
+    /* ── Contact ── */
+    .contact-section { border-top: 1px solid var(--border); text-align: center; }
+    .contact-section .section-tag { display: block; text-align: center; }
+
+    .contact-section h2 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 800; letter-spacing: -0.03em;
+      margin: 0.8rem 0 1.2rem; line-height: 1.15;
+    }
+
+    .contact-section h2 .name-accent {
+      color: var(--accent); font-family: var(--serif);
+      font-weight: 400; font-style: italic;
+    }
+
+    .contact-section .contact-desc {
+      font-size: 1.05rem; color: var(--fg-muted);
+      max-width: 46ch; margin: 0 auto 2.5rem; line-height: 1.7;
+    }
+
+    .contact-buttons {
+      display: flex; justify-content: center;
+      gap: 1rem; flex-wrap: wrap;
+    }
+
+    .btn-outline {
+      padding: 0.75rem 2rem; border-radius: var(--radius-pill);
+      font-size: 0.88rem; font-weight: 600; color: var(--fg);
+      background: transparent; border: 1.5px solid var(--border);
+      cursor: pointer; font-family: var(--sans);
+      transition: all 0.25s; display: inline-flex;
+      align-items: center; gap: 0.5rem;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+    .btn-glow {
+      padding: 0.75rem 2rem; border-radius: var(--radius-pill);
+      font-size: 0.88rem; font-weight: 700;
+      color: var(--bg); background: var(--accent);
+      border: 1.5px solid var(--accent);
+      cursor: pointer; font-family: var(--sans);
+      transition: all 0.25s;
+      box-shadow: 0 0 20px var(--accent-glow);
+    }
+    .btn-glow:hover { background: var(--accent-hover); box-shadow: 0 0 30px rgba(0,224,208,0.3); }
+
+    .btn-whatsapp {
+      padding: 0.75rem 2rem; border-radius: var(--radius-pill);
+      font-size: 0.88rem; font-weight: 700;
+      color: #fff; background: var(--whatsapp);
+      border: 1.5px solid var(--whatsapp);
+      cursor: pointer; font-family: var(--sans);
+      transition: all 0.25s;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      box-shadow: 0 0 20px rgba(37,211,102,0.15);
+    }
+    .btn-whatsapp:hover { background: #2be671; box-shadow: 0 0 30px rgba(37,211,102,0.25); }
+    .btn-whatsapp svg { width: 18px; height: 18px; fill: #fff; }
+
+    /* ── Floating WhatsApp ── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 2rem; right: 2rem;
+      z-index: 99;
+      width: 60px; height: 60px;
+      background: var(--whatsapp);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+      transition: all 0.3s;
+      animation: float-bounce 3s ease-in-out infinite;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 30px rgba(37,211,102,0.5);
+    }
+
+    .whatsapp-float svg { width: 30px; height: 30px; fill: #fff; }
+
+    .whatsapp-float .tooltip {
+      position: absolute;
+      right: 72px; top: 50%;
+      transform: translateY(-50%);
+      background: var(--bg-card);
+      color: var(--fg);
+      font-size: 0.8rem; font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      white-space: nowrap;
+      border: 1px solid var(--border);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+
+    .whatsapp-float:hover .tooltip { opacity: 1; }
+
+    @keyframes float-bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 2rem 3rem;
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.78rem; color: var(--fg-dim);
+      max-width: 1280px; margin: 0 auto;
+    }
+
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { transition: color 0.2s; }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-time { font-variant-numeric: tabular-nums; }
+
+    /* ── Scroll Reveal ── */
+    .reveal {
+      opacity: 0; transform: translateY(25px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── Mobile menu ── */
+    .menu-btn {
+      display: none;
+      width: 40px; height: 40px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      color: var(--fg);
+      align-items: center; justify-content: center;
+      cursor: pointer; font-size: 1.2rem;
+    }
+
+    .show-mobile {
+      display: flex !important;
+      position: absolute;
+      top: 72px; left: 0; right: 0;
+      flex-direction: column;
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      gap: 1rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .navbar { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .menu-btn { display: flex; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 7rem 1.5rem 3rem;
+        min-height: auto; gap: 2.5rem;
+      }
+      .hero-image-wrapper { justify-content: center; order: -1; }
+      .hero-image-container { width: 260px; height: 320px; }
+
+      section { padding: 4rem 1.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .about-photo { max-width: 280px; }
+      .project-showcase { grid-template-columns: 1fr; }
+      .project-preview { min-height: 220px; }
+
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .whatsapp-float { bottom: 1.5rem; right: 1.5rem; width: 52px; height: 52px; }
+      .whatsapp-float svg { width: 26px; height: 26px; }
+      .whatsapp-float .tooltip { display: none; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-stats { gap: 1.5rem; }
+      .hero-buttons { flex-direction: column; }
+      .btn { justify-content: center; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .contact-buttons { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════ NAVBAR ══════════ -->
+  <nav class="navbar">
+    <a href="#" class="nav-logo">shi<span>vam</span>.</a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#services">Services</a>
+      <a href="#work">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <button class="menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('show-mobile')" aria-label="Menu">☰</button>
+      <a href="#contact" class="btn-hire">
+        Hire me
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+  </nav>
+
+  <!-- ══════════ HERO ══════════ -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="availability-badge">
+        <span class="dot"></span>
+        Available for work
+      </div>
+      <h1 class="hero-title">Hi, I'm <span class="name-accent">Shivam</span></h1>
+      <p class="hero-desc">
+        <strong>Frontend Web Developer</strong> &amp; BCA Student.
+        I build clean, responsive websites for small businesses —
+        fast, professional, and affordable.
+      </p>
+      <div class="hero-buttons">
+        <button class="btn btn-primary" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">
+          View my work
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </button>
+        <button class="btn btn-secondary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+          Get in touch
+        </button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-number">1+</div>
+          <div class="stat-label">Projects built</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">10+</div>
+          <div class="stat-label">Skills learned</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">BCA</div>
+          <div class="stat-label">Student</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-image-wrapper">
+      <div class="hero-image-container">
+        <div class="open-badge">Open to projects</div>
+        <img src="shivam-photo.jpg" alt="Shivam — Frontend Web Developer" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ ABOUT ══════════ -->
+  <section id="about" class="about-section">
+    <div class="section-header">
+      <div>
+        <div class="section-tag">Get to know me</div>
+        <h2 class="section-title">About <span class="dim">Me</span></h2>
+      </div>
+      <div class="section-line"></div>
+    </div>
+    <div class="about-grid">
+      <div class="about-photo reveal">
+        <img src="shivam-photo.jpg" alt="Shivam" />
+        <div class="location-tag">📍 Gujarat, India</div>
+      </div>
+      <div class="about-content reveal">
+        <h2>
+          I build websites that help <em>small businesses</em> grow online.
+        </h2>
+        <p>
+          I'm a BCA student from Gujarat, India, with a passion for frontend
+          web development. I focus on creating clean, professional websites
+          that are responsive, fast, and actually useful for businesses looking
+          to establish their online presence.
+        </p>
+        <p>
+          My goal is simple — help small businesses get a great-looking website
+          without breaking the bank. I believe every business deserves a
+          professional web presence, and I'm here to make that happen.
+        </p>
+        <div class="info-chips">
+          <div class="chip"><span class="chip-icon">🎓</span> BCA Student</div>
+          <div class="chip"><span class="chip-icon">📍</span> Gujarat, India</div>
+          <div class="chip"><span class="chip-icon">💼</span> Freelance</div>
+          <div class="chip"><span class="chip-icon">🚀</span> Open to work</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ SKILLS ══════════ -->
+  <section id="skills" class="skills-section">
+    <div class="section-header">
+      <div>
+        <div class="section-tag">What I know</div>
+        <h2 class="section-title">My <span class="dim">Skills</span></h2>
+      </div>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card reveal">
+        <div class="skill-icon">🌐</div>
+        <div>
+          <div class="skill-name">HTML</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="90%"></div></div>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🎨</div>
+        <div>
+          <div class="skill-name">CSS</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85%"></div></div>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">⚡</div>
+        <div>
+          <div class="skill-name">JavaScript</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="70%"></div></div>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">📱</div>
+        <div>
+          <div class="skill-name">Responsive Design</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="85%"></div></div>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">✅</div>
+        <div>
+          <div class="skill-name">Form Validation</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="65%"></div></div>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">💻</div>
+        <div>
+          <div class="skill-name">VS Code</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80%"></div></div>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🔀</div>
+        <div>
+          <div class="skill-name">Git &amp; GitHub</div>
+          <div class="skill-level">Learning</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="45%"></div></div>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">⚙️</div>
+        <div>
+          <div class="skill-name">C++</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="60%"></div></div>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🐍</div>
+        <div>
+          <div class="skill-name">Python</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="55%"></div></div>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">🗄️</div>
+        <div>
+          <div class="skill-name">SQL / Database</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="50%"></div></div>
+        </div>
+      </div>
+      <div class="skill-card reveal">
+        <div class="skill-icon">📊</div>
+        <div>
+          <div class="skill-name">Data Visualization</div>
+          <div class="skill-bar-track"><div class="skill-bar-fill" data-width="45%"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ SERVICES ══════════ -->
+  <section id="services" class="services-section">
+    <div class="section-header">
+      <div>
+        <div class="section-tag">What I offer</div>
+        <h2 class="section-title">My <span class="dim">Services</span></h2>
+      </div>
+      <div class="section-line"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon-box">🏪</div>
+        <h3>Small Business Websites</h3>
+        <p>Professional, clean websites that help local businesses establish their online presence and reach more customers.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon-box">🚀</div>
+        <h3>Landing Pages</h3>
+        <p>High-converting, single-page websites designed to capture leads and drive action for your product or service.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon-box">📱</div>
+        <h3>Responsive Web Design</h3>
+        <p>Websites that look and work perfectly on every device — mobile, tablet, and desktop. No pinching or zooming required.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon-box">🔄</div>
+        <h3>Website Redesign</h3>
+        <p>Give your existing website a modern makeover. Better looks, better performance, better user experience.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon-box">📝</div>
+        <h3>Forms &amp; Interactions</h3>
+        <p>Contact forms, booking forms, and interactive elements with proper validation — all working smoothly.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ PROJECTS ══════════ -->
+  <section id="work" class="projects-section">
+    <div class="section-header">
+      <div>
+        <div class="section-tag">My work</div>
+        <h2 class="section-title">Featured <span class="dim">Project</span></h2>
+      </div>
+      <div class="section-line"></div>
+    </div>
+    <div class="project-showcase reveal">
+      <div class="project-preview">
+        <div class="browser-mockup">
+          <div class="browser-bar">
+            <span class="browser-dot red"></span>
+            <span class="browser-dot yellow"></span>
+            <span class="browser-dot green"></span>
+            <span class="browser-url">apexmotors.com</span>
+          </div>
+          <div class="browser-body">
+            <div class="mock-nav">
+              <span class="mock-logo">APEX</span>
+              <div class="mock-links">
+                <span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+            <div class="mock-hero-block">
+              <div class="mock-text-col">
+                <div class="mock-line thick"></div>
+                <div class="mock-line w80"></div>
+                <div class="mock-line w60"></div>
+                <div style="height:6px"></div>
+                <div class="mock-line accent"></div>
+              </div>
+              <div class="mock-img"></div>
+            </div>
+            <div class="mock-cards">
+              <div class="mock-card"></div>
+              <div class="mock-card"></div>
+              <div class="mock-card"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="project-details">
+        <div class="project-type-tag">🚗 Automotive Website</div>
+        <h3>Apex Motors</h3>
+        <p>
+          A car-related website showcasing frontend development and design skills.
+          Features a modern layout, responsive design, and smooth interactions —
+          built entirely with HTML, CSS, and JavaScript.
+        </p>
+        <div class="project-tech-stack">
+          <span>HTML</span>
+          <span>CSS</span>
+          <span>JavaScript</span>
+        </div>
+        <div class="project-buttons">
+          <a href="#" class="btn-live">Live Demo ↗</a>
+          <a href="#" class="btn-code">Source Code</a>
+        </div>
+      </div>
+    </div>
+    <p class="more-projects-note">More projects coming soon — stay tuned ✨</p>
+  </section>
+
+  <!-- ══════════ CONTACT ══════════ -->
+  <section id="contact" class="contact-section">
+    <div class="section-tag">Let's talk</div>
+    <h2>Have a project?<br/>Let's <span class="name-accent">work together</span>.</h2>
+    <p class="contact-desc">
+      Whether you need a website for your business or want to collaborate on a project,
+      I'd love to hear from you. Drop me a message and let's get started.
+    </p>
+    <div class="contact-buttons">
+      <a href="mailto:your-email@example.com" class="btn-glow">Email me →</a>
+      <a href="https://github.com" target="_blank" rel="noopener" class="btn-outline">GitHub</a>
+      <!-- WhatsApp button in contact section -->
+      <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener" class="btn-whatsapp">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </section>
+
+  <!-- ══════════ Floating WhatsApp Button ══════════ -->
+  <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span class="tooltip">Chat with me 💬</span>
+  </a>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer>
+    <span>© 2026 Shivam. All rights reserved.</span>
+    <div class="footer-links">
+      <a href="https://github.com">GitHub</a>
+      <a href="mailto:your-email@example.com">Email</a>
+      <a href="https://wa.me/91XXXXXXXXXX">WhatsApp</a>
+    </div>
+    <span class="footer-time" id="clock"></span>
+  </footer>
+
+  <!-- ══════════ JS ══════════ -->
+  <script>
+    // Scroll reveal
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            e.target.querySelectorAll('.skill-bar-fill').forEach((bar) => {
+              bar.style.width = bar.dataset.width;
+            });
+            observer.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -30px 0px' }
+    );
+
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = `${(i % 5) * 0.08}s`;
+      observer.observe(el);
+    });
+
+    // Live clock
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('clock').textContent =
+        now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }) + ' local';
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // Active nav link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach((s) => {
+        if (window.scrollY >= s.offsetTop - 120) current = s.id;
+      });
+      navLinks.forEach((a) => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--fg)' : '';
+      });
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.nav-links a').forEach((a) => {
+      a.addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.remove('show-mobile');
+      });
+    });
+  </script>
+
+</body>
+</html>
